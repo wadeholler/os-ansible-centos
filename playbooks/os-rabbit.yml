@@ -1,0 +1,8 @@
+- hosts: rabbitmq_hosts
+  vars:
+    - rabbitmq_master: rabbitmq1
+
+  roles:
+  - ../roles/os-rabbitmq
+
+

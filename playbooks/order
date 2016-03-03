@@ -1,0 +1,9 @@
+lxc-setup-test
+setup-infra-common.yml
+setup-infra-galera.yml
+lxc-setup-rab
+setup-infra-common.yml
+setup-infra-rabbitmq.yml
+os-rabbit.yml
+
+

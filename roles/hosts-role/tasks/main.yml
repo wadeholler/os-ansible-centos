@@ -1,0 +1,9 @@
+---
+# tasks file for hosts-role
+- name: copy the hosts file
+  copy: src=etc/hosts.galera dest=/etc/hosts
+  when: inventory_hostname in groups['galera_hosts']
+
+- name: copy the hosts file
+  copy: src=etc/hosts.rabbitmq dest=/etc/hosts
+  when: inventory_hostname in groups['rabbitmq_hosts']

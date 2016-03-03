@@ -1,0 +1,8 @@
+---
+# defaults file for os-rabbitmq
+openstack_rabbit_pass: fun4more
+
+rabbitmq_users_definitions:
+  - user:     openstack
+    password: "{{ openstack_rabbit_pass }}"
+    force: yes

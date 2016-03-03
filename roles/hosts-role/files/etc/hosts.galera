@@ -1,0 +1,4 @@
+127.0.0.1 localhost
+192.168.242.201	cntrl1.ceph.ittl cntrl1
+192.168.242.202	cntrl2.ceph.ittl cntrl2
+192.168.242.203	cntrl3.ceph.ittl cntrl3

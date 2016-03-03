@@ -1,0 +1,77 @@
+---
+# tasks file for galera
+
+#- name: install socat
+#  yum: name=socat state=latest
+
+#- name: install galera
+#  yum: name=galera state=latest
+
+#- name: install rsync
+#  yum: name=rsync state=latest
+
+#- name: install mariadb-galera-server
+#  yum: name=MariaDB-Galera-server state=latest
+
+#- name: install mysqldb-python
+#  yum: name=MySQL-python state=latest
+
+- name: install required packages
+  yum: name={{ item }} state=installed disable_gpg_check=yes
+  with_items:
+   - socat
+   - galera
+   - rsync
+   - MariaDB-Galera-server
+   - MySQL-python
+   - which
+
+#- name: move orig .my.cnf out of the way
+#  shell: mv /root/.my.cnf /root/.my.cnf.orig.${RANDOM}
+
+#- name: start mysql
+#  service: name=mysql state=started enabled=yes
+
+#- name: Configure MariaDB begin root defaults-file
+#  template: src=root/begin.my.cnf.j2 dest=/root/.my.cnf owner=root group=root mode=0640 force=yes
+
+#- name: Set MariaDB root password for local login
+#  mysql_user: name=root password={{ galera_root_password }} host=localhost state=present
+
+#- name: Configure MariaDB root defaults-file
+#  template: src=root/my.cnf.j2 dest=/root/.my.cnf owner=root group=root mode=0640 force=yes
+
+
+# Secure mysql installation - mysql_secure_installation script analogue
+
+#- name: remove test database
+#  mysql_db:
+#    name: test
+#    state: absent
+
+#- name: deny remote root access
+#  mysql_user:
+#    name: root
+#    host: "{{ item }}"
+#  with_items:
+#    - "localhost"
+#    - "127.0.0.1"
+#    - "::1"
+
+#- name: deny anonymous access
+#  mysql_user:
+#    name: ""
+#    state: absent
+
+#- name: stop mysql
+#  service: name=mysql state=stopped
+
+- name: Galera configuration file
+  template: src=server.cnf.j2 dest=/etc/my.cnf.d/server.cnf owner=root group=root mode=0640
+
+- name: enable mysql
+  shell: chkconfig mysql on
+
+- name: start mysql
+  shell: service mysql start
+

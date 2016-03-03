@@ -1,0 +1,4 @@
+127.0.0.1 localhost
+192.168.242.204 rabbitmq1.ceph.ittl rabbitmq1 
+192.168.242.205 rabbitmq2.ceph.ittl rabbitmq2 
+192.168.242.206 rabbitmq3.ceph.ittl rabbitmq3 

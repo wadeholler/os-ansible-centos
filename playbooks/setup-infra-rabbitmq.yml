@@ -1,0 +1,12 @@
+- hosts: rabbitmq_hosts
+  vars:
+    - rabbitmq_ssl: false
+    - erlang_cookie: LSKNKBELKPSTDBBCHETL
+    - enable_rabbitmq_clustering: true
+    - config_rabbitmq_ha: false
+    - rabbitmq_master: rabbitmq1
+
+  roles:
+  - ../roles/ansible-rabbitmq
+
+

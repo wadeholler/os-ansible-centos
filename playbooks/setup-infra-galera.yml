@@ -1,0 +1,13 @@
+
+- hosts: galera_hosts
+  vars:
+    #- galera_cluster_membera: [192.168.242.201, 192.168.242.202, 192.168.242.203]
+    - galera_cluster_nodes: [cntrl1, cntrl2, cntrl3]
+    - galera_node_address: "{{ ansible_eth0.ipv4.address }}"
+    - mariadb_bind_address: "{{ ansible_eth0.ipv4.address }}"
+    - master: cntrl1
+  roles:
+  #- ../roles/galera-common
+  #- ../roles/galera
+  - ../roles/ansible-galera
+

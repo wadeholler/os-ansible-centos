@@ -1,0 +1,8 @@
+---
+# tasks file for common-packages
+- name: load common packages
+  yum: name={{ item }} state=latest
+  with_items:
+   - sudo
+   - which
+

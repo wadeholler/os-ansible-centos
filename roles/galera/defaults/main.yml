@@ -1,0 +1,14 @@
+---
+# defaults file for galera
+galera_root_password: fun4more
+galera_maintenance_password: fun4more
+galera_cluster_user: root
+galera_cluster_password: fun4more
+galera_cluster_name: mycluster
+galera_cluster_members: [127.0.0.1]
+galera_bootstrap: no
+galera_bind_address: 127.0.0.1
+galera_setup_repository: no
+galera_install_packages: yes
+
+

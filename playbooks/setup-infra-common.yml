@@ -1,0 +1,17 @@
+---
+- name: Load all packages
+  hosts: all
+  roles:
+    - ../roles/common-packages
+
+- name: Setup Common Infra Components
+  hosts: base
+  roles:
+    - ../roles/ansible-role-ntp
+
+- name: make sure our entries are in /etc/hosts
+  hosts: 
+    - galera_hosts
+    - rabbitmq_hosts
+  roles:
+    - ../roles/hosts-role

@@ -1,0 +1,27 @@
+---
+# tasks file for galera-common
+#- name: copy temp.repo
+#  copy: src=temp.repo dest=/etc/yum.repos.d/temp.repo
+- name: copy pub temp.repo
+  copy: src=pubtemp.repo dest=/etc/yum.repos.d/temp.repo
+
+#- name: get /etc/yum.repos.d/Cent* files to delete
+#  shell: ls /etc/yum.repos.d/Cent*
+#  register: files_to_clean
+#  ignore_errors: yes
+
+#- name: delete Cent* files
+#  file: name={{item}} state=absent
+#  with_items: files_to_clean.stdout_lines
+ 
+#- name: remove /etc/yum.repos.d/Cent*
+#  shell: rm /etc/yum.repos.d/Cent*
+#  file: path=/etc/yum.repos.d/Centos state=absent
+
+# WE DON'T RUN THIS IN CONTAINERS
+#- name: selinux disabled
+#  selinux: state=disabled
+
+# WE DON'T DO THIS IN CONTAINERS
+#- name: stop and disable firewall
+#  service: name=firewalld state=stopped enabled=no
