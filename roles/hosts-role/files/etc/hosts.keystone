@@ -1,0 +1,4 @@
+127.0.0.1 localhost
+192.168.242.207 key1.ceph.ittl key1 
+192.168.242.208 key2.ceph.ittl key2 
+192.168.242.209 key3.ceph.ittl key3 

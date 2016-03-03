@@ -7,3 +7,7 @@
 - name: copy the hosts file
   copy: src=etc/hosts.rabbitmq dest=/etc/hosts
   when: inventory_hostname in groups['rabbitmq_hosts']
+
+- name: copy the hosts file
+  copy: src=etc/hosts.keystone dest=/etc/hosts
+  when: inventory_hostname in groups['keystone_hosts']
