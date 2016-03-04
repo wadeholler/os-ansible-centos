@@ -33,3 +33,25 @@ listen mariadb
 
 {% endfor %}
 {% endif %}
+
+{% if enable_rabbitmq | bool %}
+listen rabbitmq_management
+  bind :15672
+{% for host in groups['rabbitmq_hosts'] %}
+  server {{ hostvars[host]['ansible_hostname'] }} {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:15672 check inter 2000 rise 2 fall 5
+{% endfor %}
+{% endif %}
+
+{% if enable_keystone | bool %}
+listen keystone_public
+  bind :5000
+{% for host in groups['keystone_hosts'] %}
+  server {{ hostvars[host]['ansible_hostname'] }} {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:5000 check inter 2000 rise 2 fall 5
+{% endfor %}
+
+listen keystone_admin
+  bind :35357
+{% for host in groups['keystone_hosts'] %}
+  server {{ hostvars[host]['ansible_hostname'] }} {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:35357 check inter 2000 rise 2 fall 5
+{% endfor %}
+{% endif %}

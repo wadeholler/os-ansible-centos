@@ -2,9 +2,13 @@
 - hosts: 
     - galera_hosts
     - haproxy_hosts
+    - rabbitmq_hosts
+    - keystone_hosts
   vars:
     - enable_mariadb: true
     - master: cntrl1
+    - enable_rabbitmq: true
+    - enable_keystone: true
   roles:
     - ../roles/haproxy
 
