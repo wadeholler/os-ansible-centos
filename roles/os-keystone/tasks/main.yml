@@ -3,3 +3,5 @@
 - include: keystoneDB.yml
 - include: packages.yml
 - include: configfile.yml
+- include: initdb.yml
+- include: httpdconfig.yml

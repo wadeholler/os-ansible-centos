@@ -1,0 +1,15 @@
+- name: keystone httpd config file
+  template:
+    src: "{{ item }}.conf.j2"
+    dest: "/etc/{{ item }}/conf/{{ item }}.conf"
+  with_items:
+    - "httpd"
+  when: inventory_hostname in groups.keystone_hosts
+
+- name: copy wsgi-keystone.conf
+  copy: src=etc/httpd/conf.d/wsgi-keystone.conf dest=/etc/httpd/conf.d/wsgi-keystone.conf
+  when: inventory_hostname in groups.keystone_hosts
+
+- name: start httpd - keystone
+  service: name=httpd state=started enabled=yes
+  when: inventory_hostname in groups.keystone_hosts

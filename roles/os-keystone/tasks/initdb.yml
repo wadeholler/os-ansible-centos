@@ -1,0 +1,6 @@
+- name: init keystone db - db_sync
+  command: keystone-manage db_sync
+  become: yes
+  become_user: keystone
+  when: inventory_hostname == groups.keystone_hosts[0]
+
