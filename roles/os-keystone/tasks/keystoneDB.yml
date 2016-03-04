@@ -1,0 +1,31 @@
+- name: create keystone database
+  mysql_db: name=keystone state=present
+  when: inventory_hostname in groups.galera_hosts
+
+- name: add localhost privs to keystone user
+  mysql_user: 
+    login_host="{{ galera_vip}}"
+    login_user=root
+    login_password=fun4more
+    name=keystone
+    password="{{ keystone_pass }}"
+    priv=keystone.*:ALL
+    host=localhost
+    state=present
+  run_once: true
+  when: inventory_hostname in groups.galera_hosts
+
+- name: add other privs to keystone user
+  mysql_user: 
+    login_host="{{ galera_vip}}"
+    login_user=root
+    login_password=fun4more
+    name=keystone
+    password="{{ keystone_pass }}"
+    priv=keystone.*:ALL
+    host='%'
+    append_privs=true
+    state=present
+  run_once: true
+  when: inventory_hostname in groups.galera_hosts
+

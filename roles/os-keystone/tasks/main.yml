@@ -1,0 +1,5 @@
+---
+# tasks file for ../roles/os-keystone
+- include: keystoneDB.yml
+- include: packages.yml
+- include: configfile.yml

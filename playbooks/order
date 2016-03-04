@@ -5,6 +5,7 @@ lxc-setup-rab
 setup-infra-common.yml
 setup-infra-rabbitmq.yml
 os-rabbit.yml
+haproxy.yml
 lxc-setup-key
 setup-infra-common.yml
 os-keystone.yml

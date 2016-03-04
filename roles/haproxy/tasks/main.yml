@@ -1,0 +1,10 @@
+---
+# tasks file for ../os-ansible-centos/roles/haproxy
+- include: install.yml
+  when: inventory_hostname in groups.haproxy_hosts
+- include: config.yml
+  when: inventory_hostname in groups.haproxy_hosts
+- include: galera_check_user.yml
+  when: inventory_hostname in groups.galera_hosts
+- include: start.yml
+  when: inventory_hostname in groups.haproxy_hosts

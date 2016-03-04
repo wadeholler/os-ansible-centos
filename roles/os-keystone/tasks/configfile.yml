@@ -1,0 +1,7 @@
+- name: keystone config file
+  template:
+    src: "{{ item }}.conf.j2"
+    dest: "/etc/{{ item }}/{{ item }}.conf"
+  with_items:
+    - "keystone"
+  when: inventory_hostname in groups.keystone_hosts

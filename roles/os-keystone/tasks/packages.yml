@@ -1,0 +1,18 @@
+- name: install rdo repo
+  yum: name=centos-release-openstack-liberty state=installed
+  when: inventory_hostname in groups.keystone_hosts
+
+- name: install packages
+  yum: name={{ item }} state=installed
+  with_items:
+    - openstack-keystone
+    - httpd
+    - mod_wsgi
+    - memcached
+    - python-memcached
+  when: inventory_hostname in groups.keystone_hosts
+
+- name: start memcached
+  service: name=memcached state=started enabled=true
+  when: inventory_hostname in groups.keystone_hosts
+

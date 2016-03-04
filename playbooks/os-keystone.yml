@@ -1,0 +1,11 @@
+- hosts: 
+    - galera_hosts
+    - keystone_hosts
+  vars:
+    - galera_vip: 192.168.242.27
+    - keystone_pass: fun4more
+    - keystone_admin_token: c6548aea3c220c920477
+  roles:
+  - ../roles/os-keystone
+
+

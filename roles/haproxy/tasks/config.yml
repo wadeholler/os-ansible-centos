@@ -1,0 +1,6 @@
+- name: Copying over haproxy.cfg
+  template:
+    src: "{{ item }}.cfg.j2"
+    dest: "/etc/{{ item }}/{{ item }}.cfg"
+  with_items:
+    - "haproxy"

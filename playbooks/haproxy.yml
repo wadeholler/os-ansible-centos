@@ -1,0 +1,11 @@
+
+- hosts: 
+    - galera_hosts
+    - haproxy_hosts
+  vars:
+    - enable_mariadb: true
+    - master: cntrl1
+  roles:
+    - ../roles/haproxy
+
+
