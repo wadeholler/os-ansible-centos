@@ -14,5 +14,6 @@
     - galera_hosts
     - rabbitmq_hosts
     - keystone_hosts
+    - glance_hosts
   roles:
     - ../roles/hosts-role
