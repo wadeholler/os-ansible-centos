@@ -130,9 +130,9 @@ keystone_service_publicurl_v3: "{{ keystone_service_publicuri }}/v3"
 keystone_service_internalurl_v3: "{{ keystone_service_internaluri }}/v3"
 keystone_service_adminurl_v3: "{{ keystone_service_adminuri }}/v3"
 
-keystone_service_publicurl: "{{ keystone_service_publicurl_v3 }}"
-keystone_service_internalurl: "{{ keystone_service_internalurl_v3 }}"
-keystone_service_adminurl: "{{ keystone_service_adminurl_v3 }}"
+keystone_service_publicurl: "{{ keystone_service_publicurl_v2 }}"
+keystone_service_internalurl: "{{ keystone_service_internalurl_v2 }}"
+keystone_service_adminurl: "{{ keystone_service_adminurl_v2 }}"
 
 ## Set this value to override the "public_endpoint" keystone.conf variable
 #keystone_public_endpoint: "{{ keystone_service_publicuri }}"

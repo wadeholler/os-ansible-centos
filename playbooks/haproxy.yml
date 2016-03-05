@@ -4,11 +4,13 @@
     - haproxy_hosts
     - rabbitmq_hosts
     - keystone_hosts
+    - glance_hosts
   vars:
     - enable_mariadb: true
     - master: cntrl1
     - enable_rabbitmq: true
     - enable_keystone: true
+    - enable_glance: true
   roles:
     - ../roles/haproxy
 
