@@ -1,0 +1,7 @@
+- name: start glance-api
+  service: name=openstack-glance-api state=started enabled=yes
+  when: inventory_hostname in groups.glance_hosts
+
+- name: start glance-registry
+  service: name=openstack-glance-registry state=started enabled=yes
+  when: inventory_hostname in groups.glance_hosts

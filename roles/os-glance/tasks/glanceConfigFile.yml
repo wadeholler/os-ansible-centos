@@ -1,0 +1,15 @@
+- name: glance-api config file
+  template:
+    src: "{{ item }}-api.conf.j2"
+    dest: "/etc/{{ item }}/{{ item }}-api.conf"
+  with_items:
+    - "glance"
+  when: inventory_hostname in groups.glance_hosts
+
+- name: glance-registry config file
+  template:
+    src: "{{ item }}-registry.conf.j2"
+    dest: "/etc/{{ item }}/{{ item }}-registry.conf"
+  with_items:
+    - "glance"
+  when: inventory_hostname in groups.glance_hosts

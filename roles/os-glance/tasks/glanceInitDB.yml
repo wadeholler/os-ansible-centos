@@ -1,0 +1,6 @@
+- name: init glance db - db_sync
+  command: glance-manage db_sync
+  become: yes
+  become_user: glance
+  when: inventory_hostname == groups.glance_hosts[0]
+

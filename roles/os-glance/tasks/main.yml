@@ -9,3 +9,9 @@
   when: inventory_hostname == groups.keystone_hosts[0]
 - include: glancePackages.yml
   when: inventory_hostname in groups.glance_hosts
+- include: glanceConfigFile.yml
+  when: inventory_hostname in groups.glance_hosts
+- include: glanceInitDB.yml
+  when: inventory_hostname == groups.glance_hosts[0]
+- include: glanceServiceStart.yml
+  when: inventory_hostname in groups.glance_hosts
