@@ -1,4 +1,3 @@
 127.0.0.1 localhost
 192.168.242.210 glance1.ceph.ittl glance1 
 192.168.242.211 glance2.ceph.ittl glance2 
-192.168.242.212 glance3.ceph.ittl glance3 
