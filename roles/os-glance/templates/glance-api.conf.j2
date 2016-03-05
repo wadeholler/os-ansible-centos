@@ -488,7 +488,7 @@
 
 # The Drivers(s) to handle sending notifications. Possible values are
 # messaging, messagingv2, routing, log, test, noop (multi valued)
-#notification_driver =
+notification_driver = noop
 
 # AMQP topic used for OpenStack notifications. (list value)
 # Deprecated group/name - [rpc_notifier2]/topics
@@ -536,6 +536,7 @@
 # Deprecated group/name - [DATABASE]/sql_connection
 # Deprecated group/name - [sql]/connection
 #connection=mysql://glance:glance@localhost/glance
+connection=mysql://glance:{{ glance_pass }}@{{ galera_vip }}/glance
 
 # The SQLAlchemy connection string to use to connect to the slave
 # database. (string value)
@@ -639,7 +640,7 @@
 # Default scheme to use to store image data. The scheme must be
 # registered by one of the stores defined by the 'stores' config
 # option. (string value)
-#default_store=file
+default_store=file
 
 # Minimum interval seconds to execute updating dynamic storage
 # capabilities based on backend status then. It's not a periodic
@@ -698,7 +699,7 @@
 
 # Directory to which the Filesystem backend store writes images.
 # (string value)
-#filesystem_store_datadir=/var/lib/glance/images/
+filesystem_store_datadir=/var/lib/glance/images/
 
 # List of directories and its priorities to which the Filesystem
 # backend store writes images. (multi valued)
@@ -977,7 +978,15 @@
 #
 
 # Complete public Identity API endpoint. (string value)
-#auth_uri=<None>
+auth_uri=http://{{ keystone_vip }}:5000
+auth_url=http://{{ keystone_vip }}:35357
+auth_plugin=password
+project_domain_id = default
+user_domain_id = default
+project_name = service
+username = glance
+password = {{ glance_pass }}
+
 
 # API version of the admin Identity API endpoint. (string value)
 #auth_version=<None>
@@ -1474,7 +1483,7 @@
 # service name removed. For example, if your paste section name is
 # [pipeline:glance-api-keystone] use the value "keystone" (string
 # value)
-#flavor=<None>
+flavor=keystone
 
 # Name of the paste configuration file. (string value)
 #config_file=/usr/share/glance/glance-api-dist-paste.ini
