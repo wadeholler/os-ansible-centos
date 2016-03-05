@@ -5,3 +5,5 @@
 - include: configfile.yml
 - include: initdb.yml
 - include: httpdconfig.yml
+- include: keystone_service.yml
+  when: inventory_hostname == groups.keystone_hosts[0]

@@ -3,8 +3,23 @@
     - keystone_hosts
   vars:
     - galera_vip: 192.168.242.27
+    - keystone_vip: 192.168.242.27
+    - external_lb_vip_address: 192.168.242.27
+    - internal_lb_vip_address: 192.168.242.27
     - keystone_pass: fun4more
     - keystone_admin_token: c6548aea3c220c920477
+    - keystone_auth_admin_token: c6548aea3c220c920477
+    #- keystone_service_adminurl: "http://{{ keystone_vip }}:35357/v2.0"
+    - keystone_service_adminurl: "http://{{ keystone_vip }}:35357/v3"
+    - keystone_service_tenant_name: keystone
+    - keystone_service_description: "OpenStack Identity"
+    - keystone_service_adminuri_insecure: yes
+    - keystone_admin_tenant_name: admin
+    - keystone_admin_description: "Admin Project"
+    - keystone_service_in_ldap: false
+    - keystone_auth_admin_password: fun4more
+    - keystone_service_password: fun4more
+    
   roles:
   - ../roles/os-keystone
 

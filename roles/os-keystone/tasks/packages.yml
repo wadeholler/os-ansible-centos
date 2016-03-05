@@ -10,6 +10,7 @@
     - mod_wsgi
     - memcached
     - python-memcached
+    - python-openstackclient
   when: inventory_hostname in groups.keystone_hosts
 
 - name: start memcached
