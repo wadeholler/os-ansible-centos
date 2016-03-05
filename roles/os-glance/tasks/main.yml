@@ -1,0 +1,5 @@
+---
+# tasks file for os-glance
+- include: glanceDB.yml
+- include: glanceUser.yml
+  when: inventory_hostname == groups.keystone_hosts[0]

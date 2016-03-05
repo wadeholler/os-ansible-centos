@@ -1,0 +1,70 @@
+# Create an glance tenant
+#- name: Ensure glance tenant
+#  keystone:
+#    command: "ensure_tenant"
+#    token: "{{ keystone_auth_admin_token }}"
+#    endpoint: "{{ keystone_service_adminurl }}"
+#    tenant_name: "{{ keystone_glance_tenant_name }}"
+#    description: "{{ keystone_glance_description }}"
+#    insecure: "{{ keystone_service_adminuri_insecure }}"
+#  register: add_service
+#  until: add_service|success
+#  retries: 1
+#  delay: 1
+#  tags:
+#    - glance-api-setup
+#    - glance-setup
+
+# Create an glance user
+- name: Ensure Glance user
+  keystone:
+    command: "ensure_user"
+    token: "{{ keystone_auth_admin_token }}"
+    endpoint: "{{ keystone_service_adminurl }}"
+    user_name: "{{ keystone_glance_user_name }}"
+    tenant_name: "{{ keystone_glance_tenant_name }}"
+    password: "{{ keystone_auth_glance_password }}"
+    insecure: "{{ keystone_service_adminuri_insecure }}"
+  register: add_service
+  until: add_service|success
+  retries: 2
+  delay: 1
+  tags:
+    - glance-api-setup
+    - glance-setup
+
+# Add a role to the user
+- name: Ensure glance user to Admin role
+  keystone:
+    command: "ensure_user_role"
+    token: "{{ keystone_auth_admin_token }}"
+    endpoint: "{{ keystone_service_adminurl }}"
+    user_name: "{{ keystone_glance_user_name }}"
+    tenant_name: "{{ keystone_glance_tenant_name }}"
+    role_name: "{{ glance_role_name }}"
+    insecure: "{{ keystone_service_adminuri_insecure }}"
+  register: add_service
+  until: add_service|success
+  retries: 2
+  delay: 1
+  tags:
+    - glance-api-setup
+    - glance-setup
+
+# Add the default user role
+- name: Ensure default glance user role
+  keystone:
+    command: "ensure_role"
+    token: "{{ keystone_auth_admin_token }}"
+    endpoint: "{{ keystone_service_adminurl }}"
+    role_name: "{{ glance_default_role_name }}"
+    insecure: "{{ keystone_service_adminuri_insecure }}"
+  register: add_member_role
+  until: add_member_role|success
+  retries: 2
+  delay: 1
+  tags:
+    - glance-api-setup
+    - glance-setup
+
+

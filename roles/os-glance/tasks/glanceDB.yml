@@ -1,0 +1,32 @@
+- name: create glance database
+  mysql_db: name=glance state=present
+  when: inventory_hostname in groups.galera_hosts
+
+- name: add localhost privs to glance user
+  mysql_user: 
+    login_host="{{ galera_vip}}"
+    login_user=root
+    login_password=fun4more
+    name=glance
+    password="{{ glance_pass }}"
+    priv=glance.*:ALL
+    host=localhost
+    state=present
+  run_once: true
+  when: inventory_hostname in groups.galera_hosts
+
+- name: add other privs to glance user
+  mysql_user: 
+    login_host="{{ galera_vip}}"
+    login_user=root
+    login_password=fun4more
+    name=glance
+    password="{{ glance_pass }}"
+    priv=glance.*:ALL
+    host='%'
+    append_privs=true
+    state=present
+  run_once: true
+  when: inventory_hostname in groups.galera_hosts
+
+
