@@ -1,11 +1,28 @@
-# Create an service tenant
-- name: Ensure service tenant
+# Create an keystone tenant
+- name: Ensure keystone tenant
   keystone:
     command: "ensure_tenant"
     token: "{{ keystone_auth_admin_token }}"
     endpoint: "{{ keystone_service_adminurl }}"
     tenant_name: "{{ keystone_service_tenant_name }}"
     description: "{{ keystone_service_description }}"
+    insecure: "{{ keystone_service_adminuri_insecure }}"
+  register: add_service
+  until: add_service|success
+  retries: 1
+  delay: 1
+  tags:
+    - keystone-api-setup
+    - keystone-setup
+
+# Create an service tenant
+- name: Ensure service tenant
+  keystone:
+    command: "ensure_tenant"
+    token: "{{ keystone_auth_admin_token }}"
+    endpoint: "{{ keystone_service_adminurl }}"
+    tenant_name: service
+    description: "Service Project"
     insecure: "{{ keystone_service_adminuri_insecure }}"
   register: add_service
   until: add_service|success

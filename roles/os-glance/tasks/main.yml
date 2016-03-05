@@ -3,3 +3,9 @@
 - include: glanceDB.yml
 - include: glanceUser.yml
   when: inventory_hostname == groups.keystone_hosts[0]
+- include: glanceService.yml
+  when: inventory_hostname == groups.keystone_hosts[0]
+- include: glanceEndpoints.yml
+  when: inventory_hostname == groups.keystone_hosts[0]
+- include: glancePackages.yml
+  when: inventory_hostname in groups.glance_hosts

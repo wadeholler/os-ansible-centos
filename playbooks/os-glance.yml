@@ -12,6 +12,8 @@
     - keystone_service_adminurl: "http://{{ keystone_vip }}:35357/v3"
     - keystone_service_adminuri_insecure: yes
     - keystone_auth_admin_token: c6548aea3c220c920477
+    - external_lb_vip_address: 192.168.242.27
+    - internal_lb_vip_address: 192.168.242.27
 
     #- external_lb_vip_address: 192.168.242.27
     #- internal_lb_vip_address: 192.168.242.27
