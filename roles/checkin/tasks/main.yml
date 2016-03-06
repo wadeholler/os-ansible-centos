@@ -1,0 +1,4 @@
+---
+# tasks file for checkin
+- name: check in
+  file: path=/tmp/checkin state=absent
