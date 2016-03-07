@@ -2881,7 +2881,9 @@ lock_path = /var/lib/nova/tmp
 
 
 [oslo_messaging_rabbit]
-rabbit_host = {{ rabbitmq_vip }}
+#rabbit_hosts = 192.168.242.204:5672,192.168.242.205:5672,192.168.242.206:5672
+rabbit_hosts = {% for host in groups['rabbitmq_hosts'] %}{{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:5672{% if not loop.last %},{% endif %}{% endfor %}
+
 rabbit_userid = openstack
 rabbit_password = fun4more
 #
