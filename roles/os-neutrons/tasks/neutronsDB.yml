@@ -1,28 +1,28 @@
-- name: create nova database
-  mysql_db: name=nova state=present
+- name: create neutron database
+  mysql_db: name=neutron state=present
   when: inventory_hostname in groups.galera_hosts
 
-- name: add localhost privs to nova user
+- name: add localhost privs to neutron user
   mysql_user: 
     login_host="{{ galera_vip}}"
     login_user=root
     login_password=fun4more
-    name=nova
-    password="{{ nova_pass }}"
-    priv=nova.*:ALL
+    name=neutron
+    password="{{ neutron_pass }}"
+    priv=neutron.*:ALL
     host=localhost
     state=present
   run_once: true
   when: inventory_hostname in groups.galera_hosts
 
-- name: add other privs to nova user
+- name: add other privs to neutron user
   mysql_user: 
     login_host="{{ galera_vip}}"
     login_user=root
     login_password=fun4more
-    name=nova
-    password="{{ nova_pass }}"
-    priv=nova.*:ALL
+    name=neutron
+    password="{{ neutron_pass }}"
+    priv=neutron.*:ALL
     host='%'
     append_privs=true
     state=present

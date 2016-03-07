@@ -13,7 +13,7 @@
     - internal_lb_vip_address: 192.168.242.27
     - keystone_service_adminuri_insecure: yes
     - keystone_service_adminurl: "http://{{ keystone_vip }}:35357/v3"
-    - keystone_auth_nova_password: fun4more
+    - keystone_auth_neutron_password: fun4more
     - external_lb_vip_address: 192.168.242.27
 
     #- keystone_service_in_ldap: false
