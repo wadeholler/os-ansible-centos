@@ -1,8 +1,8 @@
 - name: start libvirtd
   service: name=libvirtd state=started enabled=yes
-  when: inventory_hostname in groups.novacompute_hosts
+  when: inventory_hostname in groups.novacompute_hosts 
 
 - name: start nova-compute
-  service: name=openstack-nova-compute state=started enabled=yes
-  when: inventory_hostname in groups.novacompute_hosts
+  service: name=openstack-nova-compute state=restarted enabled=yes
+  when: inventory_hostname in groups.novacompute_hosts and nova_compute_config.changed
 

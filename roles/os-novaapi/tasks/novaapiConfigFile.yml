@@ -4,5 +4,6 @@
     dest: "/etc/{{ item }}/{{ item }}.conf"
   with_items:
     - "nova"
+  register: novaconfig
   when: inventory_hostname in groups.novaapi_hosts
 

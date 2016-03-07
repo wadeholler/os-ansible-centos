@@ -1,23 +1,23 @@
 - name: start nova-api
   service: name=openstack-nova-api state=restarted enabled=yes
-  when: inventory_hostname in groups.novaapi_hosts
+  when: inventory_hostname in groups.novaapi_hosts and novaconfig.changed
 
 - name: start nova-cert
   service: name=openstack-nova-cert state=restarted enabled=yes
-  when: inventory_hostname in groups.novaapi_hosts
+  when: inventory_hostname in groups.novaapi_hosts and novaconfig.changed
 
 - name: start nova-consoleauth
   service: name=openstack-nova-consoleauth state=restarted enabled=yes
-  when: inventory_hostname in groups.novaapi_hosts
+  when: inventory_hostname in groups.novaapi_hosts and novaconfig.changed
 
 - name: start nova-scheduler
   service: name=openstack-nova-scheduler state=restarted enabled=yes
-  when: inventory_hostname in groups.novaapi_hosts
+  when: inventory_hostname in groups.novaapi_hosts and novaconfig.changed
 
 - name: start nova-conductor
   service: name=openstack-nova-conductor state=restarted enabled=yes
-  when: inventory_hostname in groups.novaapi_hosts
+  when: inventory_hostname in groups.novaapi_hosts and novaconfig.changed
 
 - name: start nova-novncproxy
   service: name=openstack-nova-novncproxy state=restarted enabled=yes
-  when: inventory_hostname in groups.novaapi_hosts
+  when: inventory_hostname in groups.novaapi_hosts and novaconfig.changed
