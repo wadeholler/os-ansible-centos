@@ -198,7 +198,7 @@ firewall_driver = nova.virt.firewall.NoopFirewallDriver
 #s3_affix_tenant=false
 
 # IP address of this host (string value)
-my_ip={{ ansible_eth0.ipv4.address }}
+my_ip={{ ansible_br0.ipv4.address }}
 
 # Block storage IP address of this host (string value)
 #my_block_storage_ip=$my_ip
@@ -3306,8 +3306,10 @@ rabbit_password = fun4more
 
 
 [vnc]
-vncserver_listen = {{ ansible_eth0.ipv4.address }}
-vncserver_proxyclient_address = {{ ansible_eth0.ipv4.address }}
+enabled=True
+vncserver_listen = {{ ansible_br0.ipv4.address }}
+vncserver_proxyclient_address = {{ ansible_br0.ipv4.address }}
+novncproxy_base_url = http://{{ novncproxy_vip }}:6080/vnc_auto.html
 
 #
 # From nova

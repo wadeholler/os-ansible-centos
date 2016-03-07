@@ -1,23 +1,8 @@
-- name: start nova-api
-  service: name=openstack-nova-api state=started enabled=yes
-  when: inventory_hostname in groups.novaapi_hosts
+- name: start libvirtd
+  service: name=libvirtd state=started enabled=yes
+  when: inventory_hostname in groups.novacompute_hosts
 
-- name: start nova-cert
-  service: name=openstack-nova-cert state=started enabled=yes
-  when: inventory_hostname in groups.novaapi_hosts
+- name: start nova-compute
+  service: name=openstack-nova-compute state=started enabled=yes
+  when: inventory_hostname in groups.novacompute_hosts
 
-- name: start nova-consoleauth
-  service: name=openstack-nova-consoleauth state=started enabled=yes
-  when: inventory_hostname in groups.novaapi_hosts
-
-- name: start nova-scheduler
-  service: name=openstack-nova-scheduler state=started enabled=yes
-  when: inventory_hostname in groups.novaapi_hosts
-
-- name: start nova-conductor
-  service: name=openstack-nova-conductor state=started enabled=yes
-  when: inventory_hostname in groups.novaapi_hosts
-
-- name: start nova-novncproxy
-  service: name=openstack-nova-novncproxy state=started enabled=yes
-  when: inventory_hostname in groups.novaapi_hosts
