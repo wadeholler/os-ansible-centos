@@ -1,0 +1,8 @@
+- name: novaapi config file
+  template:
+    src: "{{ item }}.conf.j2"
+    dest: "/etc/{{ item }}/{{ item }}.conf"
+  with_items:
+    - "nova"
+  when: inventory_hostname in groups.novaapi_hosts
+

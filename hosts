@@ -13,6 +13,9 @@ glance[1:2]
 [novaapi_hosts]
 novaapi[1:2]
 
+[novacompute_hosts]
+cpn00012
+
 [base]
 cpn00012
 

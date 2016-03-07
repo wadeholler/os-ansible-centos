@@ -1,0 +1,6 @@
+- name: init nova db - db_sync
+  command: nova-manage db sync
+  become: yes
+  become_user: nova
+  when: inventory_hostname == groups.novaapi_hosts[0]
+

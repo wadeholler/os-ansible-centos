@@ -1,0 +1,17 @@
+---
+# tasks file for os-novaapi
+- include: novaapiDB.yml
+- include: novaapiUser.yml
+  when: inventory_hostname == groups.keystone_hosts[0]
+- include: novaapiService.yml
+  when: inventory_hostname == groups.keystone_hosts[0]
+- include: novaapiEndpoints.yml
+  when: inventory_hostname == groups.keystone_hosts[0]
+- include: novaapiPackages.yml
+  when: inventory_hostname in groups.novaapi_hosts
+- include: novaapiConfigFile.yml
+  when: inventory_hostname in groups.novaapi_hosts
+- include: novaapiInitDB.yml
+  when: inventory_hostname == groups.novaapi_hosts[0]
+- include: novaapiServiceStart.yml
+  when: inventory_hostname in groups.novaapi_hosts

@@ -1,0 +1,70 @@
+# Create an nova tenant
+#- name: Ensure nova tenant
+#  keystone:
+#    command: "ensure_tenant"
+#    token: "{{ keystone_auth_admin_token }}"
+#    endpoint: "{{ keystone_service_adminurl }}"
+#    tenant_name: "{{ keystone_nova_tenant_name }}"
+#    description: "{{ keystone_nova_description }}"
+#    insecure: "{{ keystone_service_adminuri_insecure }}"
+#  register: add_service
+#  until: add_service|success
+#  retries: 1
+#  delay: 1
+#  tags:
+#    - nova-api-setup
+#    - nova-setup
+
+# Create an nova user
+- name: Ensure Nova user
+  keystone:
+    command: "ensure_user"
+    token: "{{ keystone_auth_admin_token }}"
+    endpoint: "{{ keystone_service_adminurl }}"
+    user_name: "{{ keystone_nova_user_name }}"
+    tenant_name: "{{ keystone_nova_tenant_name }}"
+    password: "{{ keystone_auth_nova_password }}"
+    insecure: "{{ keystone_service_adminuri_insecure }}"
+  register: add_service
+  until: add_service|success
+  retries: 2
+  delay: 1
+  tags:
+    - nova-api-setup
+    - nova-setup
+
+# Add a role to the user
+- name: Ensure nova user to Admin role
+  keystone:
+    command: "ensure_user_role"
+    token: "{{ keystone_auth_admin_token }}"
+    endpoint: "{{ keystone_service_adminurl }}"
+    user_name: "{{ keystone_nova_user_name }}"
+    tenant_name: "{{ keystone_nova_tenant_name }}"
+    role_name: "{{ nova_role_name }}"
+    insecure: "{{ keystone_service_adminuri_insecure }}"
+  register: add_service
+  until: add_service|success
+  retries: 2
+  delay: 1
+  tags:
+    - nova-api-setup
+    - nova-setup
+
+# Add the default user role
+- name: Ensure default nova user role
+  keystone:
+    command: "ensure_role"
+    token: "{{ keystone_auth_admin_token }}"
+    endpoint: "{{ keystone_service_adminurl }}"
+    role_name: "{{ nova_default_role_name }}"
+    insecure: "{{ keystone_service_adminuri_insecure }}"
+  register: add_member_role
+  until: add_member_role|success
+  retries: 2
+  delay: 1
+  tags:
+    - nova-api-setup
+    - nova-setup
+
+

@@ -1,7 +1,5 @@
 - hosts: 
-    - galera_hosts
-    - keystone_hosts[0]
-    - novaapi_hosts
+    - novacompute_hosts
   vars:
     - galera_vip: 192.168.242.27
     - glance_vip: 192.168.242.27
@@ -19,6 +17,6 @@
     #- keystone_service_in_ldap: false
 
   roles:
-  - ../roles/os-novaapi
+  - ../roles/os-novacompute
 
 

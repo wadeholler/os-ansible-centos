@@ -1,0 +1,8 @@
+---
+# tasks file for os-novaapi
+- include: novacomputePackages.yml
+  when: inventory_hostname in groups.novacompute_hosts
+- include: novacomputeConfigFile.yml
+  when: inventory_hostname in groups.novacompute_hosts
+- include: novacomputeServiceStart.yml
+  when: inventory_hostname in groups.novacompute_hosts
