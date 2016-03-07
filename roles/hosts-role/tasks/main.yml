@@ -19,3 +19,7 @@
 - name: copy the hosts file
   copy: src=etc/hosts.novaapi dest=/etc/hosts
   when: inventory_hostname in groups['novaapi_hosts']
+
+- name: copy the hosts file
+  copy: src=etc/hosts.neutrons dest=/etc/hosts
+  when: inventory_hostname in groups['neutrons_hosts']

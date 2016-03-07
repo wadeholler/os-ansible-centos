@@ -1,0 +1,17 @@
+---
+# tasks file for os-neutrons
+- include: neutronsDB.yml
+- include: neutronsUser.yml
+  when: inventory_hostname == groups.keystone_hosts[0]
+- include: neutronsService.yml
+  when: inventory_hostname == groups.keystone_hosts[0]
+- include: neutronsEndpoints.yml
+  when: inventory_hostname == groups.keystone_hosts[0]
+- include: neutronsPackages.yml
+  when: inventory_hostname in groups.neutrons_hosts
+- include: neutronsConfigFile.yml
+  when: inventory_hostname in groups.neutrons_hosts
+- include: neutronsInitDB.yml
+  when: inventory_hostname == groups.neutrons_hosts[0]
+- include: neutronsServiceStart.yml
+  when: inventory_hostname in groups.neutrons_hosts

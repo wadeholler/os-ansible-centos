@@ -1,0 +1,19 @@
+- name: install openstack repo 
+  yum: name=centos-release-openstack-liberty state=installed
+  tags:
+    - nova-setup
+    - nova-packages
+
+- name: install nova packages
+  yum: name={{ item }} state=installed
+  with_items:
+    - openstack-nova-api
+    - openstack-nova-cert
+    - openstack-nova-conductor
+    - openstack-nova-console
+    - openstack-nova-novncproxy
+    - openstack-nova-scheduler
+    - python-novaclient
+  tags:
+    - nova-setup
+    - nova-packages

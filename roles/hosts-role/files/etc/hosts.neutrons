@@ -1,0 +1,4 @@
+127.0.0.1 localhost
+192.168.242.214 neutrons1.ceph.ittl neutrons1 
+192.168.242.215 neutrons2.ceph.ittl neutrons2 
+
