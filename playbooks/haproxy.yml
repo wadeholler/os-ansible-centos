@@ -5,12 +5,15 @@
     - rabbitmq_hosts
     - keystone_hosts
     - glance_hosts
+    - novaapi_hosts
   vars:
     - enable_mariadb: true
     - master: cntrl1
     - enable_rabbitmq: true
     - enable_keystone: true
     - enable_glance: true
+    - enable_novaapi: true
+    - nova_console: "novnc"
   roles:
     - ../roles/haproxy
 

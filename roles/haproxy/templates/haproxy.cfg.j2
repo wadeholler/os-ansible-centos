@@ -69,3 +69,32 @@ listen glance_api
   server {{ hostvars[host]['ansible_hostname'] }} {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:9292 check inter 2000 rise 2 fall 5
 {% endfor %}
 {% endif %}
+
+{% if enable_novaapi | bool %}
+listen nova_api
+  bind :8774
+{% for host in groups['novaapi_hosts'] %}
+  server {{ hostvars[host]['ansible_hostname'] }} {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:8774 check inter 2000 rise 2 fall 5
+{% endfor %}
+
+listen nova_api_ec2
+  bind :8773
+{% for host in groups['novaapi_hosts'] %}
+  server {{ hostvars[host]['ansible_hostname'] }} {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:8773 check inter 2000 rise 2 fall 5
+{% endfor %}
+
+listen nova_metadata
+  bind :8775
+{% for host in groups['novaapi_hosts'] %}
+  server {{ hostvars[host]['ansible_hostname'] }} {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:8775 check inter 2000 rise 2 fall 5
+{% endfor %}
+
+{% if nova_console == 'novnc' %}
+listen nova_novncproxy
+  bind :6080
+{% for host in groups['novaapi_hosts'] %}
+  server {{ hostvars[host]['ansible_hostname'] }} {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:6080 check inter 2000 rise 2 fall 5
+{% endfor %}
+{% endif %}
+{% endif %}
+

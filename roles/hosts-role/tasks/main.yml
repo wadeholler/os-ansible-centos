@@ -15,3 +15,7 @@
 - name: copy the hosts file
   copy: src=etc/hosts.glance dest=/etc/hosts
   when: inventory_hostname in groups['glance_hosts']
+
+- name: copy the hosts file
+  copy: src=etc/hosts.novaapi dest=/etc/hosts
+  when: inventory_hostname in groups['novaapi_hosts']

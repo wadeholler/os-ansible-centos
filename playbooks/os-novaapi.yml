@@ -1,0 +1,22 @@
+- hosts: 
+    - galera_hosts
+    - keystone_hosts[0]
+    - novaapi_hosts
+  vars:
+    - galera_vip: 192.168.242.27
+    - novaapi_vip: 192.168.242.27
+    - keystone_vip: 192.168.242.27
+    - novaapi_pass: fun4more
+
+    #- keystone_auth_novaapi_password: fun4more
+    #- keystone_service_in_ldap: false
+    #- keystone_service_adminurl: "http://{{ keystone_vip }}:35357/v3"
+    #- keystone_service_adminuri_insecure: yes
+    #- keystone_auth_admin_token: c6548aea3c220c920477
+    #- external_lb_vip_address: 192.168.242.27
+    #- internal_lb_vip_address: 192.168.242.27
+
+  roles:
+  - ../roles/os-novaapi
+
+

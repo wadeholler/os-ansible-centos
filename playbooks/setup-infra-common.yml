@@ -15,5 +15,6 @@
     - rabbitmq_hosts
     - keystone_hosts
     - glance_hosts
+    - novaapi_hosts
   roles:
     - ../roles/hosts-role
