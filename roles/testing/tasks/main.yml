@@ -1,0 +1,12 @@
+---
+# tasks file for testing
+- include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ environment }}.yml"
+    - "environment.yml"
+ 
+
+- name: add the hosts
+  add_host: name={{ cntrlA }}:{{ cntrlA_port }} groups={{ new_group }}
+
+
