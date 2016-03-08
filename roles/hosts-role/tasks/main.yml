@@ -23,3 +23,7 @@
 - name: copy the hosts file
   copy: src=etc/hosts.neutrons dest=/etc/hosts
   when: inventory_hostname in groups['neutrons_hosts']
+
+- name: copy the hosts file
+  copy: src=etc/hosts.neutrona dest=/etc/hosts
+  when: inventory_hostname in groups['neutrona_hosts']

@@ -19,6 +19,9 @@ cpn00012
 [neutrons_hosts]
 neutrons[1:2]
 
+[neutrona_hosts]
+neutrona[1:2]
+
 [base]
 cpn00012
 
