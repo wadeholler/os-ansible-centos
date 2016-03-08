@@ -1,0 +1,18 @@
+- name: install openstack repo 
+  yum: name=centos-release-openstack-liberty state=installed
+  tags:
+    - neutron-setup
+    - neutron-packages
+
+- name: install neutron packages
+  yum: name={{ item }} state=installed
+  with_items:
+    - openstack-neutron 
+    - openstack-neutron-ml2
+    - openstack-neutron-linuxbridge 
+    - python-neutronclient 
+    - ebtables 
+    - ipset
+  tags:
+    - neutron-setup
+    - neutron-packages

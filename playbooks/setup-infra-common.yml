@@ -16,5 +16,7 @@
     - keystone_hosts
     - glance_hosts
     - novaapi_hosts
+    - neutrons_hosts
+    - neutrona_hosts
   roles:
     - ../roles/hosts-role
