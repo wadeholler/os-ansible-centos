@@ -9,6 +9,7 @@
   with_items:
     - openstack-neutron
     - openstack-neutron-linuxbridge
+    - openstack-neutron-ml2
     - python-neutron
   tags:
     - neutron-setup
