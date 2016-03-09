@@ -4,7 +4,8 @@
     dest: "/etc/{{ item }}/{{ item }}.conf"
   with_items:
     - "neutron"
-  when: inventory_hostname in groups.neutrona_hosts
+  when: inventory_hostname in groups.neutrons_hosts
+  register: neutronconfig
 
 - name: neutron ml2_conf.ini file
   template:
@@ -12,5 +13,6 @@
     dest: "/etc/neutron/plugins/ml2/{{ item }}.ini"
   with_items:
     - "ml2_conf"
-  when: inventory_hostname in groups.neutrona_hosts
+  when: inventory_hostname in groups.neutrons_hosts
+  register: neutronconfig
 

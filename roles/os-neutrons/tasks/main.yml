@@ -15,5 +15,5 @@
   when: inventory_hostname in groups.neutrons_hosts
 #- include: neutronsInitDB.yml
 #  when: inventory_hostname == groups.neutrons_hosts[0]
-#- include: neutronsServiceStart.yml
-#  when: inventory_hostname in groups.neutrons_hosts
+- include: neutronsServiceStart.yml
+  when: inventory_hostname in groups.neutrons_hosts

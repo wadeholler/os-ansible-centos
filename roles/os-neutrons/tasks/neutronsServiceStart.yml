@@ -1,23 +1,25 @@
-- name: start nova-api
-  service: name=openstack-nova-api state=restarted enabled=yes
-  when: inventory_hostname in groups.novaapi_hosts
 
-- name: start nova-cert
-  service: name=openstack-nova-cert state=restarted enabled=yes
-  when: inventory_hostname in groups.novaapi_hosts
+- name: start openstack neutron-server
+  service: name=neutron-server state=started enabled=yes
+  when: inventory_hostname in groups.neutrons_hosts 
 
-- name: start nova-consoleauth
-  service: name=openstack-nova-consoleauth state=restarted enabled=yes
-  when: inventory_hostname in groups.novaapi_hosts
+- name: start openstack neutron-server
+  service: name=neutron-server state=restarted enabled=yes
+  when: inventory_hostname in groups.neutrons_hosts and neutronconfig.changed
 
-- name: start nova-scheduler
-  service: name=openstack-nova-scheduler state=restarted enabled=yes
-  when: inventory_hostname in groups.novaapi_hosts
 
-- name: start nova-conductor
-  service: name=openstack-nova-conductor state=restarted enabled=yes
-  when: inventory_hostname in groups.novaapi_hosts
-
-- name: start nova-novncproxy
-  service: name=openstack-nova-novncproxy state=restarted enabled=yes
-  when: inventory_hostname in groups.novaapi_hosts
+#- name: start nova-consoleauth
+#  service: name=openstack-nova-consoleauth state=restarted enabled=yes
+#  when: inventory_hostname in groups.novaapi_hosts
+#
+#- name: start nova-scheduler
+#  service: name=openstack-nova-scheduler state=restarted enabled=yes
+#  when: inventory_hostname in groups.novaapi_hosts
+#
+#- name: start nova-conductor
+#  service: name=openstack-nova-conductor state=restarted enabled=yes
+#  when: inventory_hostname in groups.novaapi_hosts
+#
+#- name: start nova-novncproxy
+#  service: name=openstack-nova-novncproxy state=restarted enabled=yes
+#  when: inventory_hostname in groups.novaapi_hosts
