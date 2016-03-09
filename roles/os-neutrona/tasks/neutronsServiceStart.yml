@@ -2,10 +2,10 @@
   service: name=neutron-server state=restarted enabled=yes
   when: inventory_hostname in groups.neutrons_hosts and neutronconfig.changed
 
-- name: start neutron-linuxbridge-agent
-  service: name=neutron-linuxbridge-agent state=restarted enabled=yes
-  when: inventory_hostname in groups.neutrons_hosts and neutronconfig.changed
-
+#- name: start neutron-linuxbridge-agent
+#  service: name=neutron-linuxbridge-agent state=restarted enabled=yes
+#  when: inventory_hostname in groups.neutrons_hosts and neutronconfig.changed
+#
 #- name: start nova-consoleauth
 #  service: name=openstack-nova-consoleauth state=restarted enabled=yes
 #  when: inventory_hostname in groups.neutrons_hosts and neutronconfig.changed
