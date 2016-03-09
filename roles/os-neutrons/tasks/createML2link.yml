@@ -1,0 +1,2 @@
+- name: create ml2 link
+  file: src=/etc/neutron/plugins/ml2/ml2_conf.ini dest=/etc/neutron/plugin.ini owner=root group=neutron state=link

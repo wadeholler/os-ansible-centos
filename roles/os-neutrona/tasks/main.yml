@@ -11,7 +11,13 @@
   when: inventory_hostname in groups.neutrona_hosts
 - include: neutronaConfigFile.yml
   when: inventory_hostname in groups.neutrona_hosts
-#- include: neutronsInitDB.yml
-#  when: inventory_hostname == groups.neutrons_hosts[0]
-#- include: neutronsServiceStart.yml
-#  when: inventory_hostname in groups.neutrons_hosts
+- include: createML2link.yml
+  when: inventory_hostname in groups.neutrons_hosts
+- include: neutronaInitDB.yml
+  when: inventory_hostname == groups.neutrona_hosts[0]
+- include: novaapiServiceStart.yml
+  when: inventory_hostname in groups.novaapi_hosts
+- include: neutronsServiceStart.yml
+  when: inventory_hostname in groups.neutrons_hosts
+- include: neutronaServiceStart.yml
+  when: inventory_hostname in groups.neutrona_hosts

@@ -1,0 +1,6 @@
+- name: init neutron db - db_sync
+  command: neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head
+  become: yes
+  become_user: neutron
+  when: inventory_hostname == groups.neutrona_hosts[0]
+

@@ -11,6 +11,8 @@
   when: inventory_hostname in groups.neutrons_hosts
 - include: neutronsConfigFile.yml
   when: inventory_hostname in groups.neutrons_hosts
+- include: createML2link.yml
+  when: inventory_hostname in groups.neutrons_hosts
 #- include: neutronsInitDB.yml
 #  when: inventory_hostname == groups.neutrons_hosts[0]
 #- include: neutronsServiceStart.yml

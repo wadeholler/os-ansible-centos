@@ -4,6 +4,7 @@
     dest: "/etc/{{ item }}/{{ item }}.conf"
   with_items:
     - "neutron"
+  register: neutronconfig
   when: inventory_hostname in groups.neutrona_hosts
 
 - name: neutron ml2_conf.ini file
@@ -12,6 +13,7 @@
     dest: "/etc/neutron/plugins/ml2/{{ item }}.ini"
   with_items:
     - "ml2_conf"
+  register: neutronconfig
   when: inventory_hostname in groups.neutrona_hosts
 
 - name: neutron linuxbridge_agent.ini file
@@ -20,6 +22,7 @@
     dest: "/etc/neutron/plugins/ml2/{{ item }}.ini"
   with_items:
     - "linuxbridge_agent"
+  register: neutronconfig
   when: inventory_hostname in groups.neutrona_hosts
 
 - name: neutron l3_agent.ini file
@@ -28,6 +31,7 @@
     dest: "/etc/neutron/{{ item }}.ini"
   with_items:
     - "l3_agent"
+  register: neutronconfig
   when: inventory_hostname in groups.neutrona_hosts
 
 - name: neutron dhcp_agent.ini file
@@ -36,6 +40,7 @@
     dest: "/etc/neutron/{{ item }}.ini"
   with_items:
     - "dhcp_agent"
+  register: neutronconfig
   when: inventory_hostname in groups.neutrona_hosts
 
 - name: neutron dnsmasq-neutron.conf file
@@ -44,6 +49,7 @@
     dest: "/etc/neutron/{{ item }}.conf"
   with_items:
     - "dnsmasq-neutron"
+  register: neutronconfig
   when: inventory_hostname in groups.neutrona_hosts
 
 - name: neutron metadata_agent.init file
@@ -52,6 +58,7 @@
     dest: "/etc/neutron/{{ item }}.ini"
   with_items:
     - "metadata_agent"
+  register: neutronconfig
   when: inventory_hostname in groups.neutrona_hosts
 
 
