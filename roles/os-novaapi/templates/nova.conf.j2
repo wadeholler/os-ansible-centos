@@ -2560,6 +2560,19 @@ password = {{ nova_pass }}
 
 
 [neutron]
+url = http://{{ neutron_vip }}:9696
+auth_url = http://{{ neutron_vip }}:35357
+auth_plugin = password
+project_domain_id = default
+user_domain_id = default
+region_name = RegionOne
+project_name = service
+username = neutron
+password = {{ neutron_pass }}
+
+service_metadata_proxy = True
+metadata_proxy_shared_secret = {{ neutron_pass }}
+
 
 #
 # From nova.api

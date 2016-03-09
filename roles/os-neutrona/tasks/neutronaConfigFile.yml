@@ -46,5 +46,13 @@
     - "dnsmasq-neutron"
   when: inventory_hostname in groups.neutrona_hosts
 
+- name: neutron metadata_agent.init file
+  template:
+    src: "{{ item }}.ini.j2"
+    dest: "/etc/neutron/{{ item }}.ini"
+  with_items:
+    - "metadata_agent"
+  when: inventory_hostname in groups.neutrona_hosts
+
 
 

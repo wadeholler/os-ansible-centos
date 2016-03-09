@@ -1,6 +1,6 @@
 - hosts: 
     #- galera_hosts
-    #- rabbitmq_hosts
+    - rabbitmq_hosts
     #- keystone_hosts[0]
     - neutrona_hosts
   vars:
@@ -11,6 +11,7 @@
     #- rabbitmq_vip: 192.168.242.27
     - neutron_pass: fun4more
     - nova_pass: fun4more
+    - rabbitmq_pass: fun4more
     #- keystone_auth_admin_token: c6548aea3c220c920477
     #- internal_lb_vip_address: 192.168.242.27
     #- keystone_service_adminuri_insecure: yes
