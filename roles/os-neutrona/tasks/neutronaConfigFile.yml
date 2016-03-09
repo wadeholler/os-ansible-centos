@@ -1,0 +1,50 @@
+- name: neutron config file
+  template:
+    src: "{{ item }}.conf.j2"
+    dest: "/etc/{{ item }}/{{ item }}.conf"
+  with_items:
+    - "neutron"
+  when: inventory_hostname in groups.neutrona_hosts
+
+- name: neutron ml2_conf.ini file
+  template:
+    src: "{{ item }}.ini.j2"
+    dest: "/etc/neutron/plugins/ml2/{{ item }}.ini"
+  with_items:
+    - "ml2_conf"
+  when: inventory_hostname in groups.neutrona_hosts
+
+- name: neutron linuxbridge_agent.ini file
+  template:
+    src: "{{ item }}.ini.j2"
+    dest: "/etc/neutron/plugins/ml2/{{ item }}.ini"
+  with_items:
+    - "linuxbridge_agent"
+  when: inventory_hostname in groups.neutrona_hosts
+
+- name: neutron l3_agent.ini file
+  template:
+    src: "{{ item }}.ini.j2"
+    dest: "/etc/neutron/{{ item }}.ini"
+  with_items:
+    - "l3_agent"
+  when: inventory_hostname in groups.neutrona_hosts
+
+- name: neutron dhcp_agent.ini file
+  template:
+    src: "{{ item }}.ini.j2"
+    dest: "/etc/neutron/{{ item }}.ini"
+  with_items:
+    - "dhcp_agent"
+  when: inventory_hostname in groups.neutrona_hosts
+
+- name: neutron dnsmasq-neutron.conf file
+  template:
+    src: "{{ item }}.conf.j2"
+    dest: "/etc/neutron/{{ item }}.conf"
+  with_items:
+    - "dnsmasq-neutron"
+  when: inventory_hostname in groups.neutrona_hosts
+
+
+

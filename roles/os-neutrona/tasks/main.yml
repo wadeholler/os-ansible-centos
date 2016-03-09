@@ -9,8 +9,8 @@
 #  when: inventory_hostname == groups.keystone_hosts[0]
 - include: neutronaPackages.yml
   when: inventory_hostname in groups.neutrona_hosts
-#- include: neutronsConfigFile.yml
-#  when: inventory_hostname in groups.neutrons_hosts
+- include: neutronaConfigFile.yml
+  when: inventory_hostname in groups.neutrona_hosts
 #- include: neutronsInitDB.yml
 #  when: inventory_hostname == groups.neutrons_hosts[0]
 #- include: neutronsServiceStart.yml
