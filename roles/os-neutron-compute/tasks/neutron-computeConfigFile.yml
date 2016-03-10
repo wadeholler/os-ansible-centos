@@ -15,3 +15,13 @@
     - "linuxbridge_agent"
   register: neutroncomputeconfig
   when: inventory_hostname in groups.novacompute_hosts
+
+- name: neutron ml2_conf.ini file
+  template:
+    src: "{{ item }}.ini.j2"
+    dest: "/etc/neutron/plugins/ml2/{{ item }}.ini"
+  with_items:
+    - "ml2_conf"
+  register: neutroncomputeconfig
+  when: inventory_hostname in groups.novacompute_hosts
+
