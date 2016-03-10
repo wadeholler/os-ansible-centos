@@ -1,0 +1,17 @@
+
+- name: start neutron-linuxbridge-agent
+  service: name=neutron-linuxbridge-agent state=started enabled=yes
+  when: inventory_hostname in groups.novacompute_hosts 
+
+- name: start nova-compute
+  service: name=openstack-nova-compute state=started enabled=yes
+  when: inventory_hostname in groups.novacompute_hosts
+
+- name: start neutron-linuxbridge-agent
+  service: name=neutron-linuxbridge-agent state=restarted enabled=yes
+  when: inventory_hostname in groups.novacompute_hosts and neutroncomputeconfig.changed
+
+- name: start nova-compute
+  service: name=openstack-nova-compute state=restarted enabled=yes
+  when: inventory_hostname in groups.novacompute_hosts and neutroncomputeconfig.changed
+

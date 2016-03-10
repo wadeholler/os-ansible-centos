@@ -4,3 +4,6 @@
   when: inventory_hostname in groups.novacompute_hosts
 - include: neutron-computeConfigFile.yml
   when: inventory_hostname in groups.novacompute_hosts
+- include: neutron-computeServiceStart.yml 
+  when: inventory_hostname in groups.novacompute_hosts
+  

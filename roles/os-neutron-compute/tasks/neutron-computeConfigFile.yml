@@ -4,5 +4,14 @@
     dest: "/etc/{{ item }}/{{ item }}.conf"
   with_items:
     - "neutron"
-  register: neutron-compute-config
+  register: neutroncomputeconfig
+  when: inventory_hostname in groups.novacompute_hosts
+
+- name: neutron linuxbridge_agent.ini file
+  template:
+    src: "{{ item }}.ini.j2"
+    dest: "/etc/neutron/plugins/ml2/{{ item }}.ini"
+  with_items:
+    - "linuxbridge_agent"
+  register: neutroncomputeconfig
   when: inventory_hostname in groups.novacompute_hosts
