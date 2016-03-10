@@ -1,6 +1,6 @@
 ---
 # tasks file for os-neutron-compute
-- include: neutron-computeConfigFile.yml
-  when: inventory_hostname in groups.novacompute_hosts
 - include: neutron-computePackages.yml 
+  when: inventory_hostname in groups.novacompute_hosts
+- include: neutron-computeConfigFile.yml
   when: inventory_hostname in groups.novacompute_hosts
