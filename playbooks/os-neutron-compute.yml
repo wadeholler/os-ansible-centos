@@ -1,0 +1,28 @@
+- hosts: 
+    #- galera_hosts
+    - rabbitmq_hosts
+    #- keystone_hosts[0]
+    #- neutrons_hosts
+    - novacompute_hosts
+  vars:
+    - galera_vip: 192.168.242.27
+    - neutrons_vip: 192.168.242.27
+    - keystone_vip: 192.168.242.27
+    - rabbitmq_vip: 192.168.242.27
+    - nova_vip: 192.168.242.27
+    - neutron_pass: fun4more
+    - rabbitmq_pass: fun4more
+    - nova_pass: fun4more
+    - keystone_auth_admin_token: c6548aea3c220c920477
+    - internal_lb_vip_address: 192.168.242.27
+    - keystone_service_adminuri_insecure: yes
+    - keystone_service_adminurl: "http://{{ keystone_vip }}:35357/v3"
+    - keystone_auth_neutron_password: fun4more
+    - external_lb_vip_address: 192.168.242.27
+
+    #- keystone_service_in_ldap: false
+
+  roles:
+  - ../roles/os-neutron-compute
+
+

@@ -1,0 +1,8 @@
+- name: neutron config file
+  template:
+    src: "{{ item }}.conf.j2"
+    dest: "/etc/{{ item }}/{{ item }}.conf"
+  with_items:
+    - "neutron"
+  register: neutron-compute-config
+  when: inventory_hostname in groups.novacompute_hosts
