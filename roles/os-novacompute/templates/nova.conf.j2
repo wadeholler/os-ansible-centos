@@ -1072,6 +1072,8 @@ auth_strategy=keystone
 
 # Memcached servers or None for in process cache. (list value)
 #memcached_servers=<None>
+memcached_servers={% for host in groups['keystone_hosts'] %}{{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:11211{% if not loop.last %},{% endif %}{% endfor %}
+
 
 #
 # From nova.openstack.common.policy
@@ -2179,6 +2181,8 @@ password = {{ nova_pass }}
 # undefined, tokens will instead be cached in-process. (list value)
 # Deprecated group;name - DEFAULT;memcache_servers
 #memcached_servers=<None>
+memcached_servers={% for host in groups['keystone_hosts'] %}{{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:11211{% if not loop.last %},{% endif %}{% endfor %}
+
 
 # In order to prevent excessive effort spent validating tokens, the middleware
 # caches previously-seen tokens for a configurable duration (in seconds). Set

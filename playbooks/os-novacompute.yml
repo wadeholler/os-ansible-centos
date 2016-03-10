@@ -1,6 +1,7 @@
 - hosts: 
     - novacompute_hosts
     - rabbitmq_hosts
+    - keystone_hosts
   vars:
     - galera_vip: 192.168.242.27
     - glance_vip: 192.168.242.27
