@@ -857,6 +857,7 @@ lock_path = /var/lib/neutron/tmp
 
 [oslo_messaging_amqp]
 rabbit_hosts = {% for host in groups['rabbitmq_hosts'] %}{{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:5672{% if not loop.last %},{% endif %}{% endfor %}
+
 rabbit_userid = openstack
 rabbit_password = {{ rabbitmq_pass }}
 
@@ -977,6 +978,11 @@ rabbit_password = {{ rabbitmq_pass }}
 
 
 [oslo_messaging_rabbit]
+
+rabbit_hosts = {% for host in groups['rabbitmq_hosts'] %}{{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:5672{% if not loop.last %},{% endif %}{% endfor %}
+
+rabbit_userid = openstack
+rabbit_password = {{ rabbitmq_pass }}
 
 #
 # From oslo.messaging

@@ -98,3 +98,11 @@ listen nova_novncproxy
 {% endif %}
 {% endif %}
 
+{% if enable_neutron | bool %}
+listen neutron_server
+  bind :9696
+{% for host in groups['neutrons_hosts'] %}
+  server {{ hostvars[host]['ansible_hostname'] }} {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:9696 check inter 2000 rise 2 fall 5
+{% endfor %}
+{% endif %}
+
