@@ -1,0 +1,14 @@
+network testing
+
+neutron net-create private
+neutron subnet-create --name private --allocation-pool start=10.2.2.100,end=10.2.2.200 private 10.2.2.0/24
+neutron router-create private
+neutron router-interface-add private private
+
+
+neutron net-create ext-net --router:external True --provider:physical_network public --provider:network_type flat
+neutron subnet-create ext-net --name ext-subnet --allocation-pool start=192.168.243.100,end=192.168.243.250 --disable-dhcp --gateway 192.168.243.1 192.168.243.0/24
+
+
+neutron router-gateway-set private ext-net
+
