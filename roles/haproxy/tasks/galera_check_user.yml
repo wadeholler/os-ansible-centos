@@ -1,5 +1,5 @@
 - name: create a haproxy user
-  mysql_user: name=haproxy password='' host='%' priv=*.*:ALL state=present
+  mysql_user: name=haproxy password=haproxy host='%' priv=*.*:ALL state=present
 
 - name: reset the damn passwd to nothing
   command: mysql -e "use mysql; update user set password = '' where user = 'haproxy';"
