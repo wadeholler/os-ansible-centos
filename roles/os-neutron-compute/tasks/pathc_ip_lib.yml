@@ -1,0 +1,26 @@
+- name: patch ip_lib.py
+  copy: 
+    src: "ip_lib.py" 
+    dest: "/usr/lib/python2.7/site-packages/neutron/agent/linux/ip_lib.py" 
+    mode: 0644
+  notify: 
+    - restart neutron agent container agents
+  when: inventory_hostname in groups.neutrona_hosts
+
+- name: patch ip_lib.py
+  copy: 
+    src: "ip_lib.py" 
+    dest: "/usr/lib/python2.7/site-packages/neutron/agent/linux/ip_lib.py" 
+    mode: 0644
+  notify: 
+    - restart neutron server container agents
+  when: inventory_hostname in groups.neutrons_hosts
+
+- name: patch ip_lib.py
+  copy: 
+    src: "ip_lib.py" 
+    dest: "/usr/lib/python2.7/site-packages/neutron/agent/linux/ip_lib.py" 
+    mode: 0644
+  notify: 
+    - restart nova neutron agents
+  when: inventory_hostname in groups.novacompute_hosts
