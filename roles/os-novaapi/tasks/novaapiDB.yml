@@ -4,7 +4,7 @@
 
 - name: add localhost privs to nova user
   mysql_user: 
-    login_host="{{ galera_vip}}"
+    #login_host="{{ galera_vip}}"
     login_user=root
     login_password=fun4more
     name=nova
@@ -17,7 +17,7 @@
 
 - name: add other privs to nova user
   mysql_user: 
-    login_host="{{ galera_vip}}"
+    #login_host="{{ galera_vip}}"
     login_user=root
     login_password=fun4more
     name=nova

@@ -17,3 +17,6 @@
 #  when: inventory_hostname == groups.neutrons_hosts[0]
 - include: neutronsServiceStart.yml
   when: inventory_hostname in groups.neutrons_hosts
+- include: pathc_ip_lib.yml
+  when: inventory_hostname in groups.neutrona_hosts or inventory_hostname in groups.neutrons_hosts or inventory_hostname in groups.novacompute_hosts
+

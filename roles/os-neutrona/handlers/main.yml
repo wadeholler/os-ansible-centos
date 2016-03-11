@@ -1,2 +1,28 @@
 ---
 # handlers file for ../roles/os-neutrona
+- name: restart neutron agent container agents
+  service:
+    name: "{{ item }}"
+    state: restarted
+  with_items: 
+    - neutron-l3-agent
+    - neutron-linuxbridge-agent
+    - neutron-dhcp-agent
+    - neutron-metadata-agent
+  when: inventory_hostname in groups.neutrona_hosts
+
+- name: restart neutron server container agents
+  service:
+    name: "{{ item }}"
+    state: restarted
+  with_items: 
+    - neutron-server
+  when: inventory_hostname in groups.neutrons_hosts
+
+- name: restart nova neutron agents
+  service:
+    name: "{{ item }}"
+    state: restarted
+  with_items: 
+    - neutron-linuxbridge-agent
+  when: inventory_hostname in groups.novacompute_hosts

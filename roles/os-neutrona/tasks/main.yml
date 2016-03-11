@@ -21,3 +21,5 @@
   when: inventory_hostname in groups.neutrons_hosts
 - include: neutronaServiceStart.yml
   when: inventory_hostname in groups.neutrona_hosts
+- include: pathc_ip_lib.yml
+  when: inventory_hostname in groups.neutrona_hosts or inventory_hostname in groups.neutrons_hosts or inventory_hostname in groups.novacompute_hosts
